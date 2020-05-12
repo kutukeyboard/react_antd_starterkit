@@ -1,0 +1,16 @@
+{
+  "name": "react_antd_starterkit",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "antd": "^4.2.2",
+    "next": "9.4.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
