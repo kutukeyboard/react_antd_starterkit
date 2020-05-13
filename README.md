@@ -1,30 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# React ANTD Starterkit
 
-## Getting Started
+React ANTD Starterkit is a starter kit to help you quickly setup your react project using NextJS framework and ANTD as a UI components and get you up and runing in no time, its not a complete or ready solution, its only a starter kit, basic page sample alse provided.
 
-First, run the development server:
+### Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
+First you have to do is
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Framework & Library used
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- [NextJS](https://nextjs.org/) - ReactJS Framework
+- [ANTD](https://ant.design/) - React UI library that contains a set of high quality components and demos for building rich, interactive user interfaces.
 
-## Learn More
+### Features
 
-To learn more about Next.js, take a look at the following resources:
+- Signup & login mechanism
+- Dynamic Navigation menu based on data provided, so you can generate menu based on user access rights.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### templates
 
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
+- Login Page
+- Signup Page
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+other features and templete will come soon, hopefully.
