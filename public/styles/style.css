@@ -1,4 +1,34 @@
 .card-layout {
-  padding: 50px;
+  padding: 5vw;
   background-color: #00b9f6;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-form {
+  width: 400px;
+}
+
+.ant-carousel .slick-slide {
+  overflow: hidden;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+}
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.loginUser {
+  margin: auto;
+  margin-right: 0;
+  font-weight: 700;
 }

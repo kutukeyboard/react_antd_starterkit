@@ -1,7 +1,7 @@
-import { Card, Row, Col } from "antd";
 import MyCarousel from "../components/homepage/myCarousel";
 import MycardDisplay from "../components/homepage/cardDisplay";
 import ContactForm from "../components/homepage/contactForm";
+
 const Home = (props) => {
   const getCarouselImages = () => {
     // get data from your api here
@@ -32,16 +32,16 @@ const Home = (props) => {
           "https://image.freepik.com/free-vector/online-courses-illustration-concept_23-2148525395.jpg",
         altText: "",
         link: "",
-        title: "",
-        Description: "",
+        title: "Expert Teachers",
+        description: "Get guides from experts of their fields to upgrade your skill faster.",
       },
       {
         id: 2,
         image: "https://image.freepik.com/free-vector/online-courses-tutorials_23-2148529954.jpg",
         altText: "",
         link: "",
-        title: "",
-        Description: "",
+        title: "Updated Learning Material",
+        description: "thousands of uptodate learning material for you.",
       },
       {
         id: 3,
@@ -49,8 +49,8 @@ const Home = (props) => {
           "https://image.freepik.com/free-vector/online-tutorials-illustration-concept_23-2148525396.jpg",
         altText: "",
         link: "",
-        title: "",
-        Description: "",
+        title: "One on One Session",
+        description: "Get better understanding with one on one session.",
       },
     ];
 

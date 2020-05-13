@@ -1,10 +1,21 @@
 import Head from "next/head";
+import { useEffect, useState } from "react";
 import { Layout, Menu, Affix, BackTop } from "antd";
-import { HomeFilled, CloudFilled, SettingFilled } from "@ant-design/icons";
-// import Style from "../public/styles/style.css";
+import MenuBar from "../components/_shared/menubar";
+
 const { Header, Content, Footer } = Layout;
 
 const MyApp = ({ Component, pageProps }) => {
+  const [isLogin, setIsLogin] = useState();
+  const [loginUser, setLoginUser] = useState();
+  const [menuData, setMenuData] = useState();
+
+  useEffect(() => {
+    if (localStorage.getItem("userToken")) {
+      setLoginUser(localStorage.getItem("loginUser"));
+      setIsLogin(true);
+    }
+  }, []);
   return (
     <div>
       <Head>
@@ -17,32 +28,7 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <Layout>
         <Affix offsetTop={0}>
-          <Header style={{ backgroundColor: "#fff" }}>
-            <Menu
-              mode="horizontal"
-              defaultSelectedKeys={["1"]}
-              style={{ margin: "auto", lineHeight: "64px" }}
-            >
-              <Menu.Item key="1">
-                <a href="/">
-                  <HomeFilled />
-                  Home
-                </a>{" "}
-              </Menu.Item>
-              <Menu.Item key="2">
-                <a href="#">
-                  <CloudFilled />
-                  Website Template
-                </a>
-              </Menu.Item>
-              <Menu.Item key="3">
-                <a href="#">
-                  <SettingFilled />
-                  Admin Template
-                </a>
-              </Menu.Item>
-            </Menu>
-          </Header>
+          <MenuBar isLogin={isLogin} loginData={loginUser} />
         </Affix>
         <BackTop visibilityHeight={200} />
         <Content style={{ backgroundColor: "#fff" }}>
