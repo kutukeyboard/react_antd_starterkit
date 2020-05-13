@@ -53,12 +53,12 @@ const MenuBar = (props) => {
           {props.menuList &&
             props.menuList.map((menu, index) => {
               return menu.child.length > 0 ? (
-                <SubMenu key={index} title={<span className="nav-text">{" " + menu.caption}</span>}>
+                <SubMenu key={index} title={menu.caption}>
                   {menu.child.map((child, childIndex) => {
                     return (
-                      <Menu.Item key={childIndex}>
+                      <Menu.Item key={child.caption + childIndex}>
                         <Link href={child.url}>
-                          <a className="nav-text">{" " + child.caption}</a>
+                          <a>{child.caption}</a>
                         </Link>
                       </Menu.Item>
                     );
@@ -67,7 +67,7 @@ const MenuBar = (props) => {
               ) : (
                 <Menu.Item key={index}>
                   <Link href={menu.url ? menu.url : ""}>
-                    <a className="nav-text">{menu.caption}</a>
+                    <a>{menu.caption}</a>
                   </Link>
                 </Menu.Item>
               );
