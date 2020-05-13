@@ -14,7 +14,6 @@ const Login = () => {
     const userToken = await getLogin(values.email, values.password);
     localStorage.setItem("userToken", userToken);
     localStorage.setItem("loginUser", values.email);
-    // console.log("Success:", values);
     router.reload();
   };
 

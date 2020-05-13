@@ -40,10 +40,10 @@ const ContactForm = () => {
         </Form.Item>
 
         <Form.Item name={["user", "message"]} label="Message">
-          <Input.TextArea />
+          <Input.TextArea rows={5} />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" block>
             Submit
           </Button>
         </Form.Item>

@@ -1,14 +1,7 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import Link from "next/link";
 import { Menu, Modal, Tabs } from "antd";
-import {
-  HomeFilled,
-  CloudFilled,
-  SettingFilled,
-  LockFilled,
-  LogoutOutlined,
-} from "@ant-design/icons";
-import { useRouter } from "next/router";
+import { HomeFilled, LockFilled, LogoutOutlined } from "@ant-design/icons";
 
 import LoginForm from "../signupLogin/login";
 import SignupForm from "../signupLogin/signup";
@@ -17,8 +10,6 @@ const { TabPane } = Tabs;
 const { SubMenu } = Menu;
 
 const MenuBar = (props) => {
-  const router = useRouter();
-
   const [modalVisible, setModalVisible] = useState();
 
   const logOut = () => {
@@ -39,8 +30,6 @@ const MenuBar = (props) => {
     setModalVisible(false);
   };
 
-  useEffect(() => {});
-
   return (
     <div>
       <Modal visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
@@ -54,14 +43,37 @@ const MenuBar = (props) => {
         </Tabs>
       </Modal>
       <div className="menu-container">
-        <Menu mode="horizontal" defaultSelectedKeys={["1"]} style={{ lineHeight: "64px" }}>
-          <Menu.Item key="1">
+        <Menu mode="horizontal" defaultSelectedKeys={["Home"]} style={{ lineHeight: "64px" }}>
+          <Menu.Item key="Home">
             <a href="/">
               <HomeFilled />
               Home
-            </a>{" "}
+            </a>
           </Menu.Item>
-          <SubMenu icon={<CloudFilled />} title="Website Template">
+          {props.menuList &&
+            props.menuList.map((menu, index) => {
+              return menu.child.length > 0 ? (
+                <SubMenu key={index} title={<span className="nav-text">{" " + menu.caption}</span>}>
+                  {menu.child.map((child, childIndex) => {
+                    return (
+                      <Menu.Item key={childIndex}>
+                        <Link href={child.url}>
+                          <a className="nav-text">{" " + child.caption}</a>
+                        </Link>
+                      </Menu.Item>
+                    );
+                  })}
+                </SubMenu>
+              ) : (
+                <Menu.Item key={index}>
+                  <Link href={menu.url ? menu.url : ""}>
+                    <a className="nav-text">{menu.caption}</a>
+                  </Link>
+                </Menu.Item>
+              );
+            })}
+
+          {/* <SubMenu icon={<CloudFilled />} title="Website Template">
             <Menu.Item>
               <a href="#">Product Catalog</a>
             </Menu.Item>
@@ -85,7 +97,7 @@ const MenuBar = (props) => {
             <Menu.Item>
               <a href="#">Detail Page</a>
             </Menu.Item>
-          </SubMenu>
+          </SubMenu> */}
         </Menu>
         {props.isLogin && <p className="loginUser">Welcome, {props.loginData}</p>}
         <Menu mode="horizontal" style={{ lineHeight: "64px" }}>
