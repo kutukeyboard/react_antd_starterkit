@@ -7,6 +7,10 @@ const layout = {
   wrapperCol: { span: 8 },
 };
 
+const onFinish = (values) => {
+  console.log(values);
+};
+
 const validateMessages = {
   required: "${label} is required!",
   types: {
@@ -18,28 +22,23 @@ const validateMessages = {
   },
 };
 
-const onFinish = (values) => {
-  console.log(values);
-};
-
 const ContactForm = () => {
   return (
     <div style={{ paddingTop: "20px" }}>
       <Title style={{ textAlign: "center" }}>Contact us</Title>
-      <Form
-        {...layout}
-        name="nest-messages"
-        onFinish={onFinish}
-        validateMessages={validateMessages}
-      >
-        <Form.Item name={["user", "name"]} label="Name" rules={[{ required: true }]}>
+      <Form {...layout} name="contactForm" validateMessages={validateMessages} onFinish={onFinish}>
+        <Form.Item name="fromName" label="Name" rules={[{ required: true, min: 3, max: 255 }]}>
           <Input />
         </Form.Item>
-        <Form.Item name={["user", "email"]} label="Email" rules={[{ type: "email" }]}>
+        <Form.Item
+          name="email"
+          label="Email"
+          rules={[{ type: "email", required: true, min: 3, max: 255 }]}
+        >
           <Input />
         </Form.Item>
 
-        <Form.Item name={["user", "message"]} label="Message">
+        <Form.Item name="message" label="Message" rules={[{ required: true, min: 3, max: 255 }]}>
           <Input.TextArea rows={5} />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
