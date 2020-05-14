@@ -44,9 +44,7 @@ const MenuBar = (props) => {
       return (
         <Menu.Item
           onClick={logOut}
-          style={
-            menuMode == "horizontal" ? { float: "right", marginRight: "20px" } : { float: "none" }
-          }
+          style={menuMode == "horizontal" ? { float: "right" } : { float: "none" }}
         >
           <LogoutOutlined />
           Logout
@@ -67,54 +65,50 @@ const MenuBar = (props) => {
 
   const showMainMenu = () => {
     return (
-      <div>
-        <Menu mode={menuMode} defaultSelectedKeys={["Home"]} className="menu-container">
-          {menuMode == "inline" && (
-            <Menu.Item
-              key="close"
-              style={{ textAlign: "right" }}
-              onClick={() => setMenuVisible(false)}
-            >
-              <CloseOutlined />
-            </Menu.Item>
-          )}
-          <Menu.Item key="Home">
-            <a href="/">
-              <HomeFilled />
-              Home
-            </a>
+      <Menu
+        mode={menuMode}
+        defaultSelectedKeys={["Home"]}
+        style={menuMode == "inline" ? { width: "100vw" } : {}}
+      >
+        {menuMode == "inline" && (
+          <Menu.Item
+            key="close"
+            style={{ textAlign: "right" }}
+            onClick={() => setMenuVisible(false)}
+          >
+            <CloseOutlined />
           </Menu.Item>
-          {props.menuList &&
-            props.menuList.map((menu, index) => {
-              return menu.child.length > 0 ? (
-                <SubMenu key={index} title={menu.caption}>
-                  {menu.child.map((child, childIndex) => {
-                    return (
-                      <Menu.Item key={child.caption + childIndex}>
-                        <Link href={child.url}>
-                          <a>{child.caption}</a>
-                        </Link>
-                      </Menu.Item>
-                    );
-                  })}
-                </SubMenu>
-              ) : (
-                <Menu.Item key={index}>
-                  <Link href={menu.url ? menu.url : ""}>
-                    <a>{menu.caption}</a>
-                  </Link>
-                </Menu.Item>
-              );
-            })}
-          {showLoginMenu()}
-        </Menu>
-        {/* <div className={getContainerStyle()}>
-          {props.isLogin && menuMode == "horizontal" && (
-            <p className="loginUser">Welcome, {props.loginData}</p>
-          )}
-          <Menu mode={menuMode}>{showLoginMenu()}</Menu>
-        </div> */}
-      </div>
+        )}
+        <Menu.Item key="Home">
+          <a href="/">
+            <HomeFilled />
+            Home
+          </a>
+        </Menu.Item>
+        {props.menuList &&
+          props.menuList.map((menu, index) => {
+            return menu.child.length > 0 ? (
+              <SubMenu key={index} title={menu.caption}>
+                {menu.child.map((child, childIndex) => {
+                  return (
+                    <Menu.Item key={child.caption + childIndex}>
+                      <Link href={child.url}>
+                        <a>{child.caption}</a>
+                      </Link>
+                    </Menu.Item>
+                  );
+                })}
+              </SubMenu>
+            ) : (
+              <Menu.Item key={index}>
+                <Link href={menu.url ? menu.url : ""}>
+                  <a>{menu.caption}</a>
+                </Link>
+              </Menu.Item>
+            );
+          })}
+        {showLoginMenu()}
+      </Menu>
     );
   };
 

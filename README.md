@@ -19,6 +19,7 @@ npm install
 
 - Signup & login mechanism
 - Dynamic Navigation menu based on data provided, so you can generate menu based on user access rights.
+- Responsive ANTD Menu
 
 ### templates
 

@@ -28,15 +28,10 @@
   z-index: 99;
   width: 100%;
 }
-.menu-container {
-  width: 100vw;
+.body {
+  overflow: hidden;
 }
-.menu-container-mobile {
-  flex-direction: column;
-}
-.menu-dropdown {
-  margin-left: 20px;
-}
+
 .loginUser {
   margin-top: 13px;
   font-weight: 700;
