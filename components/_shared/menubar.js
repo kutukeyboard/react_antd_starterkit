@@ -65,56 +65,59 @@ const MenuBar = (props) => {
 
   const showMainMenu = () => {
     return (
-      <Menu
-        mode={menuMode}
-        defaultSelectedKeys={["Home"]}
-        style={menuMode == "inline" ? { width: "100vw" } : {}}
-      >
-        {menuMode == "inline" && (
-          <Menu.Item
-            key="close"
-            style={{ textAlign: "right" }}
-            onClick={() => setMenuVisible(false)}
-          >
-            <CloseOutlined />
+      <div>
+        <Menu
+          mode={menuMode}
+          defaultSelectedKeys={["Home"]}
+          style={menuMode == "inline" ? { width: "100vw" } : {}}
+          onClick={() => setMenuVisible(false)}
+        >
+          {menuMode == "inline" && (
+            <Menu.Item
+              key="close"
+              style={{ textAlign: "right" }}
+              onClick={() => setMenuVisible(false)}
+            >
+              <CloseOutlined />
+            </Menu.Item>
+          )}
+          <Menu.Item key="Home">
+            <a href="/">
+              <HomeFilled />
+              Home
+            </a>
           </Menu.Item>
-        )}
-        <Menu.Item key="Home">
-          <a href="/">
-            <HomeFilled />
-            Home
-          </a>
-        </Menu.Item>
-        {props.menuList &&
-          props.menuList.map((menu, index) => {
-            return menu.child.length > 0 ? (
-              <SubMenu key={index} title={menu.caption}>
-                {menu.child.map((child, childIndex) => {
-                  return (
-                    <Menu.Item key={child.caption + childIndex}>
-                      <Link href={child.url}>
-                        <a>{child.caption}</a>
-                      </Link>
-                    </Menu.Item>
-                  );
-                })}
-              </SubMenu>
-            ) : (
-              <Menu.Item key={index}>
-                <Link href={menu.url ? menu.url : ""}>
-                  <a>{menu.caption}</a>
-                </Link>
-              </Menu.Item>
-            );
-          })}
-        {showLoginMenu()}
-      </Menu>
+          {props.menuList &&
+            props.menuList.map((menu, index) => {
+              return menu.child.length > 0 ? (
+                <SubMenu key={index} title={menu.caption}>
+                  {menu.child.map((child, childIndex) => {
+                    return (
+                      <Menu.Item key={child.caption + childIndex}>
+                        <Link href={child.url}>
+                          <a>{child.caption}</a>
+                        </Link>
+                      </Menu.Item>
+                    );
+                  })}
+                </SubMenu>
+              ) : (
+                <Menu.Item key={index}>
+                  <Link href={menu.url ? menu.url : ""}>
+                    <a>{menu.caption}</a>
+                  </Link>
+                </Menu.Item>
+              );
+            })}
+          {showLoginMenu()}
+        </Menu>
+      </div>
     );
   };
 
   const checkWindowSize = () => {
     console.log(props);
-    if (window.screen.width > 599) {
+    if (window.innerWidth > 599) {
       setMenuMode("horizontal");
     } else {
       setMenuMode("inline");
