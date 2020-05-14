@@ -45,6 +45,13 @@ const ProductCatalog = () => {
         description: "Learn how edit photo using adobe photoshop.",
         image: "https://image.flaticon.com/icons/png/128/552/552220.png",
       },
+      {
+        id: "6",
+        productName: "Build Instagram Business",
+        price: 100000,
+        description: "Learn how create online store using Instagram.",
+        image: "https://image.flaticon.com/icons/svg/1409/1409946.svg",
+      },
     ]);
   };
 
@@ -56,18 +63,17 @@ const ProductCatalog = () => {
   return (
     <div>
       <PageHeader title="Product catalog" />
-      <div className="product-card-layout">
-        <Row gutter={[24, 24]}>
-          {listProduct &&
-            listProduct.map((product, index) => {
-              return (
-                <Col md={6} sm={24}>
-                  <ProductCard key={index} data={product} />
-                </Col>
-              );
-            })}
-        </Row>
-      </div>
+      <br />
+      <Row gutter={[24, 24]}>
+        {listProduct &&
+          listProduct.map((product, index) => {
+            return (
+              <Col md={4} sm={24}>
+                <ProductCard key={index} data={product} />
+              </Col>
+            );
+          })}
+      </Row>
     </div>
   );
 };

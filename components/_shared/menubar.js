@@ -69,7 +69,7 @@ const MenuBar = (props) => {
         <Menu
           mode={menuMode}
           defaultSelectedKeys={["Home"]}
-          style={menuMode == "inline" ? { width: "100vw" } : {}}
+          style={menuMode == "inline" ? { width: "100vw" } : { padding: "0 50px" }}
           onClick={() => setMenuVisible(false)}
         >
           {menuMode == "inline" && (
@@ -116,7 +116,6 @@ const MenuBar = (props) => {
   };
 
   const checkWindowSize = () => {
-    console.log(props);
     if (window.innerWidth > 599) {
       setMenuMode("horizontal");
     } else {

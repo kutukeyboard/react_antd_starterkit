@@ -18,6 +18,7 @@ const MyApp = ({ Component, pageProps }) => {
   const [loginUser, setLoginUser] = useState();
   const [menuData, setMenuData] = useState();
   const [collapsed, setCollapsed] = useState(true);
+
   const getMenu = () => {
     // get menu by user role via your api here, you can use loginUser as reference.
 
@@ -32,7 +33,7 @@ const MyApp = ({ Component, pageProps }) => {
           },
           {
             caption: "Product Detail",
-            url: "",
+            url: "/productDetail",
           },
           {
             caption: "Blog Page",
@@ -88,13 +89,15 @@ const MyApp = ({ Component, pageProps }) => {
         <link rel="stylesheet" href="/styles/style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </Head>
-      <Layout>
+      <Layout style={{ backgroundColor: "#fff" }}>
         <MenuBar isLogin={isLogin} loginData={loginUser} menuList={menuData} />
         <BackTop visibilityHeight={200} />
-        <Content style={{ backgroundColor: "#fff" }}>
+        <Content style={{ marginTop: "20px", padding: "0 50px" }}>
           <Component {...pageProps} />
         </Content>
-        <Footer>React ANTD Starterkit</Footer>
+        <Footer>
+          <p style={{ textAlign: "center" }}>React ANTD Starterkit</p>
+        </Footer>
       </Layout>
     </div>
   );
