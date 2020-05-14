@@ -4,7 +4,7 @@ const { Meta } = Card;
 const CardDisplay = (props) => {
   return (
     <div className="card-layout">
-      <Row gutter={24}>
+      <Row gutter={[24, 24]}>
         {props.data.map((r, i) => {
           return (
             <Col key={i} md={8} sm={24}>

@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, Modal, Tabs } from "antd";
-import { HomeFilled, LockFilled, LogoutOutlined } from "@ant-design/icons";
+import { Menu, Modal, Tabs, Dropdown } from "antd";
+import {
+  HomeFilled,
+  LockFilled,
+  LogoutOutlined,
+  MenuOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 import LoginForm from "../signupLogin/login";
 import SignupForm from "../signupLogin/signup";
@@ -10,8 +17,10 @@ const { TabPane } = Tabs;
 const { SubMenu } = Menu;
 
 const MenuBar = (props) => {
+  const router = useRouter();
   const [modalVisible, setModalVisible] = useState();
-
+  const [menuMode, setMenuMode] = useState();
+  const [menuVisible, setMenuVisible] = useState();
   const logOut = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("loginUser");
@@ -30,20 +39,45 @@ const MenuBar = (props) => {
     setModalVisible(false);
   };
 
-  return (
-    <div>
-      <Modal visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <Tabs defaultActiveKey="1">
-          <TabPane tab="Login" key="1">
-            <LoginForm />
-          </TabPane>
-          <TabPane tab="Signup" key="2">
-            <SignupForm />
-          </TabPane>
-        </Tabs>
-      </Modal>
-      <div className="menu-container">
-        <Menu mode="horizontal" defaultSelectedKeys={["Home"]} style={{ lineHeight: "64px" }}>
+  const showLoginMenu = () => {
+    if (props.isLogin) {
+      return (
+        <Menu.Item
+          onClick={logOut}
+          style={
+            menuMode == "horizontal" ? { float: "right", marginRight: "20px" } : { float: "none" }
+          }
+        >
+          <LogoutOutlined />
+          Logout
+        </Menu.Item>
+      );
+    } else {
+      return (
+        <Menu.Item
+          onClick={showModal}
+          style={menuMode == "horizontal" ? { float: "right" } : { float: "none" }}
+        >
+          <LockFilled />
+          Login / Signup
+        </Menu.Item>
+      );
+    }
+  };
+
+  const showMainMenu = () => {
+    return (
+      <div>
+        <Menu mode={menuMode} defaultSelectedKeys={["Home"]} className="menu-container">
+          {menuMode == "inline" && (
+            <Menu.Item
+              key="close"
+              style={{ textAlign: "right" }}
+              onClick={() => setMenuVisible(false)}
+            >
+              <CloseOutlined />
+            </Menu.Item>
+          )}
           <Menu.Item key="Home">
             <a href="/">
               <HomeFilled />
@@ -72,48 +106,60 @@ const MenuBar = (props) => {
                 </Menu.Item>
               );
             })}
-
-          {/* <SubMenu icon={<CloudFilled />} title="Website Template">
-            <Menu.Item>
-              <a href="#">Product Catalog</a>
-            </Menu.Item>
-            <Menu.Item>
-              <a href="#">Product Detail</a>
-            </Menu.Item>
-            <Menu.Item>
-              <a href="#">Blog Page</a>
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu icon={<SettingFilled />} title="Admin Template">
-            <Menu.Item>
-              <a href="#">Dashboard</a>
-            </Menu.Item>
-            <Menu.Item>
-              <a href="#">Setting Page</a>
-            </Menu.Item>
-            <Menu.Item>
-              <a href="#">Data Grid Page</a>
-            </Menu.Item>
-            <Menu.Item>
-              <a href="#">Detail Page</a>
-            </Menu.Item>
-          </SubMenu> */}
+          {showLoginMenu()}
         </Menu>
-        {props.isLogin && <p className="loginUser">Welcome, {props.loginData}</p>}
-        <Menu mode="horizontal" style={{ lineHeight: "64px" }}>
-          {props.isLogin ? (
-            <Menu.Item onClick={logOut}>
-              <LogoutOutlined />
-              Logout
-            </Menu.Item>
-          ) : (
-            <Menu.Item onClick={showModal}>
-              <LockFilled />
-              Login / Signup
-            </Menu.Item>
+        {/* <div className={getContainerStyle()}>
+          {props.isLogin && menuMode == "horizontal" && (
+            <p className="loginUser">Welcome, {props.loginData}</p>
           )}
-        </Menu>
+          <Menu mode={menuMode}>{showLoginMenu()}</Menu>
+        </div> */}
       </div>
+    );
+  };
+
+  const checkWindowSize = () => {
+    console.log(props);
+    if (window.screen.width > 599) {
+      setMenuMode("horizontal");
+    } else {
+      setMenuMode("inline");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", checkWindowSize);
+    checkWindowSize();
+    return () => window.removeEventListener("resize", checkWindowSize);
+  }, [checkWindowSize]);
+
+  return (
+    <div>
+      <Modal visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="Login" key="1">
+            <LoginForm />
+          </TabPane>
+          <TabPane tab="Signup" key="2">
+            <SignupForm />
+          </TabPane>
+        </Tabs>
+      </Modal>
+      {menuMode == "inline" ? (
+        <Dropdown overlay={showMainMenu()} visible={menuVisible}>
+          <a
+            className="ant-dropdown-link"
+            onClick={(e) => {
+              e.preventDefault();
+              setMenuVisible(!menuVisible);
+            }}
+          >
+            <MenuOutlined style={{ margin: "20px" }} />
+          </a>
+        </Dropdown>
+      ) : (
+        showMainMenu()
+      )}
     </div>
   );
 };

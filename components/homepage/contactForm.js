@@ -3,8 +3,8 @@ import { Form, Input, InputNumber, Button, Typography } from "antd";
 const { Title } = Typography;
 
 const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 8 },
+  labelCol: { md: 8, sm: 10 },
+  wrapperCol: { md: 8, sm: 14 },
 };
 
 const onFinish = (values) => {
@@ -24,7 +24,7 @@ const validateMessages = {
 
 const ContactForm = () => {
   return (
-    <div style={{ paddingTop: "20px" }}>
+    <div style={{ padding: "20px" }}>
       <Title style={{ textAlign: "center" }}>Contact us</Title>
       <Form {...layout} name="contactForm" validateMessages={validateMessages} onFinish={onFinish}>
         <Form.Item name="fromName" label="Name" rules={[{ required: true, min: 3, max: 255 }]}>

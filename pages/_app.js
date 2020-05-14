@@ -1,15 +1,23 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Layout, Affix, BackTop } from "antd";
+import { Layout, Affix, BackTop, Menu } from "antd";
 import MenuBar from "../components/_shared/menubar";
 
-const { Header, Content, Footer } = Layout;
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
+
+const { Header, Sider, Content, Footer } = Layout;
 
 const MyApp = ({ Component, pageProps }) => {
   const [isLogin, setIsLogin] = useState();
   const [loginUser, setLoginUser] = useState();
   const [menuData, setMenuData] = useState();
-
+  const [collapsed, setCollapsed] = useState(true);
   const getMenu = () => {
     // get menu by user role via your api here, you can use loginUser as reference.
 
@@ -20,7 +28,7 @@ const MyApp = ({ Component, pageProps }) => {
         child: [
           {
             caption: "Product Catalog",
-            url: "",
+            url: "/productCatalog",
           },
           {
             caption: "Product Detail",
@@ -57,13 +65,18 @@ const MyApp = ({ Component, pageProps }) => {
     ];
   };
 
+  const toggle = () => {
+    setCollapsed(!collapsed);
+  };
+
   useEffect(() => {
+    setMenuData(getMenu());
     if (localStorage.getItem("userToken")) {
       setLoginUser(localStorage.getItem("loginUser"));
-      setMenuData(getMenu());
       setIsLogin(true);
     }
   }, []);
+
   return (
     <div>
       <Head>
@@ -73,11 +86,10 @@ const MyApp = ({ Component, pageProps }) => {
           href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.20.7/antd.min.css"
         />
         <link rel="stylesheet" href="/styles/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </Head>
       <Layout>
-        <Affix offsetTop={0}>
-          <MenuBar isLogin={isLogin} loginData={loginUser} menuList={menuData} />
-        </Affix>
+        <MenuBar isLogin={isLogin} loginData={loginUser} menuList={menuData} />
         <BackTop visibilityHeight={200} />
         <Content style={{ backgroundColor: "#fff" }}>
           <Component {...pageProps} />

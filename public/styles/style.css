@@ -22,13 +22,53 @@
   height: auto;
   max-height: 400px;
 }
+
+.mobile-menu {
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+}
 .menu-container {
-  display: flex;
-  justify-content: space-between;
-  background-color: #fff;
+  width: 100vw;
+}
+.menu-container-mobile {
+  flex-direction: column;
+}
+.menu-dropdown {
+  margin-left: 20px;
 }
 .loginUser {
-  margin: auto;
-  margin-right: 0;
+  margin-top: 13px;
   font-weight: 700;
+}
+
+.product-card-layout {
+  padding: 2vw;
+}
+
+.img-thumbnail {
+  padding: 2vw;
+}
+
+.menu-icon {
+  margin-left: 20px;
+}
+
+@media only screen and (max-width: 599px) {
+  .hide-mobile {
+    display: none;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .hide-mobile {
+    display: none;
+  }
+
+  .show-mobile {
+    display: none;
+  }
 }
