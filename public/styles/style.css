@@ -23,15 +23,6 @@
   max-height: 400px;
 }
 
-.mobile-menu {
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-}
-.body {
-  overflow: hidden;
-}
-
 .loginUser {
   margin-top: 13px;
   font-weight: 700;
