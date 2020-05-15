@@ -61,10 +61,10 @@ const ProductDetail = () => {
   }, [router.query]);
 
   return (
-    <div style={{ marginBottom: 50 }}>
+    <div style={{ margin: 20 }}>
       {product && (
         <Row gutter={16}>
-          <Col md={4} sm={24}>
+          <Col lg={3} md={4} sm={24}>
             <img src={product.image} />
           </Col>
           <Col md={12} sm={24}>

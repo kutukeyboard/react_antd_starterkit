@@ -36,6 +36,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  max-width: 100%;
+  padding: 10px;
+  align-content: center;
 }
 
 .img-thumbnail {
