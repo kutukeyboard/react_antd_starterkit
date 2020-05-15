@@ -32,10 +32,6 @@ const MyApp = ({ Component, pageProps }) => {
             url: "/productCatalog?p=1",
           },
           {
-            caption: "Product Detail",
-            url: "/productDetail",
-          },
-          {
             caption: "Blog Page",
             url: "",
           },
