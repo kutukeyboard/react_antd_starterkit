@@ -92,7 +92,7 @@ const MyApp = ({ Component, pageProps }) => {
       <Layout style={{ backgroundColor: "#fff" }}>
         <MenuBar isLogin={isLogin} loginData={loginUser} menuList={menuData} />
         <BackTop visibilityHeight={200} />
-        <Content style={{ marginTop: "20px", padding: "0 50px" }}>
+        <Content>
           <Component {...pageProps} />
         </Content>
         <Footer>
