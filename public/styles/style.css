@@ -32,6 +32,12 @@
   padding: 3vw;
 }
 
+.flex-row-strech {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
 .img-thumbnail {
   padding: 2vw;
 }

@@ -1,4 +1,4 @@
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -7,11 +7,11 @@ const ProductCard = (props) => {
     <Card
       hoverable
       cover={<img src={props.data.image} className="img-thumbnail" />}
-      className="product-card"
+      style={{ height: "100%" }}
     >
-      <h1>{props.data.id}</h1>
-      <h3 className="product-name">{props.data.productName}</h3>
-      <p className="product-price">{props.data.price}</p>
+      <h2 className="product-name">{props.data.productName}</h2>
+      <p>SKU : {props.data.id}</p>
+      <h3 className="product-price">{props.data.price}</h3>
       <Link href={`/productDetail/${props.data.id}`} as={`/productDetail?id=${props.data.id}`}>
         <a>
           <ShoppingCartOutlined /> Buy Now

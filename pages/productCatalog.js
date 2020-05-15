@@ -1,79 +1,67 @@
 import { useEffect, useState } from "react";
 
 import ProductCard from "../components/custom/productCard";
-import { PageHeader, Row, Col } from "antd";
+import { PageHeader, Row, Col, Pagination } from "antd";
+import { useRouter } from "next/router";
+
+import FakeDb from "../components/custom/fakedb";
 
 const ProductCatalog = () => {
+  const router = useRouter();
   const [listProduct, setListProduct] = useState();
+  const [currentpage, setCurrentPage] = useState();
+  const [totalData, setTotalData] = useState();
 
-  const getProducts = () => {
+  const onPageChange = (page) => {
+    router.push(`/productCatalog/${page}`, `productCatalog?p=${page}`);
+  };
+
+  const loadPagination = () => {
+    return (
+      <Pagination
+        current={parseInt(currentpage)}
+        onChange={onPageChange}
+        total={totalData}
+        pageSize={10}
+        style={{ textAlign: "center", marginBottom: "20px" }}
+      />
+    );
+  };
+
+  const getProducts = (slice, page) => {
     //get your list product from your api here
 
-    setListProduct([
-      {
-        id: "1",
-        productName: "Trello Course",
-        price: 100000,
-        description: "10 day intensive course, learn to use trello.",
-        image: "https://image.flaticon.com/icons/png/128/174/174874.png",
-      },
-      {
-        id: "2",
-        productName: "MS Excel for data engineer",
-        price: 100000,
-        description: "Learn using MS Excel for data gathering and manipulation.",
-        image: "https://image.flaticon.com/icons/png/128/888/888850.png",
-      },
-      {
-        id: "3",
-        productName: "Basic Adobe Illustrator",
-        price: 100000,
-        description: "Learn basic vector design using adobe illustrator.",
-        image: "https://image.flaticon.com/icons/png/128/552/552222.png",
-      },
-      {
-        id: "4",
-        productName: "Present Like a Pro",
-        price: 100000,
-        description: "Learn how to compose best presentation for any needs.",
-        image: "https://image.flaticon.com/icons/png/128/888/888874.png",
-      },
-      {
-        id: "5",
-        productName: "Photoshop for photographers",
-        price: 100000,
-        description: "Learn how edit photo using adobe photoshop.",
-        image: "https://image.flaticon.com/icons/png/128/552/552220.png",
-      },
-      {
-        id: "6",
-        productName: "Build Instagram Business",
-        price: 100000,
-        description: "Learn how create online store using Instagram.",
-        image: "https://image.flaticon.com/icons/svg/1409/1409946.svg",
-      },
-    ]);
+    // following is juat a dummy request
+    const fake = FakeDb(slice, page);
+    setTotalData(fake.totalData);
+    setListProduct(fake.data);
   };
 
   useEffect(() => {
-    getProducts();
-    // console.log(listProduct);
-  }, []);
+    if (router.query.p != undefined) {
+      setCurrentPage(router.query.p);
+      getProducts(10, router.query.p);
+    }
+  }, [router.query.p]);
 
   return (
     <div>
       <PageHeader title="Product catalog" />
       <br />
-      <Row gutter={[24, 24]}>
-        {listProduct &&
-          listProduct.map((product, index) => {
-            return (
-              <Col md={4} sm={24}>
-                <ProductCard key={index} data={product} />
-              </Col>
-            );
-          })}
-      </Row>
+      {listProduct && (
+        <>
+          <Row gutter={[24, 24]} className="flex-row-strech">
+            {listProduct.map((product, index) => {
+              return (
+                <Col md={4} sm={24} key={index}>
+                  <ProductCard key={index} data={product} />
+                </Col>
+              );
+            })}
+          </Row>
+          {loadPagination()}
+        </>
+      )}
     </div>
   );
 };

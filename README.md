@@ -20,12 +20,14 @@ npm install
 - Signup & login mechanism
 - Dynamic Navigation menu based on data provided, so you can generate menu based on user access rights.
 - Responsive ANTD Menu
-- Product Catalog
-- Product Detail
+- pagination
+- fakeDb - to simulate pagination request
 
 ### templates
 
 - Login Page
 - Signup Page
+- Product Catalog - with pagination
+- Product Detail
 
 other features and templete will come soon, hopefully.

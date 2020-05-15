@@ -52,16 +52,12 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   const router = useRouter();
 
-  const getProduct = () => {
-    // get your product detail data via your api here
-    if (router.query) {
-      setProduct(dummyData.find((id) => (id = router.query.id)));
-      console.log(product);
-    }
-  };
+  const getProduct = () => {};
 
   useEffect(() => {
-    getProduct();
+    if (router.query.id != undefined) {
+      setProduct(dummyData.find((r) => r.id == router.query.id));
+    }
   }, [router.query]);
 
   return (

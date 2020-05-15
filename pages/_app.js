@@ -29,7 +29,7 @@ const MyApp = ({ Component, pageProps }) => {
         child: [
           {
             caption: "Product Catalog",
-            url: "/productCatalog",
+            url: "/productCatalog?p=1",
           },
           {
             caption: "Product Detail",
