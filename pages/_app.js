@@ -16,18 +16,9 @@ const MyApp = ({ Component, pageProps }) => {
 
     return [
       {
-        caption: "Website Template",
-        url: "",
-        child: [
-          {
-            caption: "Product Catalog",
-            url: "/productCatalog?p=1",
-          },
-          {
-            caption: "Blog Page",
-            url: "/blogList",
-          },
-        ],
+        caption: "Product Catalog",
+        url: "/productCatalog?p=1",
+        child: [],
       },
       {
         caption: "Admin Template",
