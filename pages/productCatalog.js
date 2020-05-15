@@ -4,7 +4,7 @@ import ProductCard from "../components/custom/productCard";
 import { PageHeader, Row, Col, Pagination } from "antd";
 import { useRouter } from "next/router";
 
-import FakeDb from "../components/custom/fakedb";
+import ProductData from "../components/custom/productData";
 
 const ProductCatalog = () => {
   const router = useRouter();
@@ -28,13 +28,14 @@ const ProductCatalog = () => {
     );
   };
 
-  const getProducts = (slice, page) => {
+  const getProducts = async (slice, page) => {
     //get your list product from your api here
 
     // following is juat a dummy request
-    const fake = FakeDb(slice, page);
-    setTotalData(fake.totalData);
-    setListProduct(fake.data);
+    const data = await ProductData(slice, page);
+    setTotalData(data.totalData);
+    setListProduct(data.data);
+    return;
   };
 
   useEffect(() => {
