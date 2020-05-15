@@ -1,17 +1,9 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Layout, Affix, BackTop, Menu } from "antd";
+import { Layout, Affix, BackTop, Button } from "antd";
 import MenuBar from "../components/_shared/menubar";
 
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
-
-const { Header, Sider, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const MyApp = ({ Component, pageProps }) => {
   const [isLogin, setIsLogin] = useState();
@@ -86,11 +78,14 @@ const MyApp = ({ Component, pageProps }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </Head>
       <Layout style={{ backgroundColor: "#fff" }}>
-        <MenuBar isLogin={isLogin} loginData={loginUser} menuList={menuData} />
+        <Affix offsetTop={0}>
+          <MenuBar isLogin={isLogin} loginData={loginUser} menuList={menuData} />
+        </Affix>
         <BackTop visibilityHeight={200} />
         <Content>
           <Component {...pageProps} />
         </Content>
+
         <Footer>
           <p style={{ textAlign: "center" }}>React ANTD Starterkit</p>
         </Footer>

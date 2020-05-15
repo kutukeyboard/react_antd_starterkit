@@ -51,7 +51,7 @@ const ProductCatalog = () => {
       <br />
       {listProduct && (
         <>
-          <Row gutter={[24, 24]} style={{ margin: 0, padding: 10 }}>
+          <Row gutter={[24, 24]} className="product-card-layout">
             {listProduct.map((product, index) => {
               return (
                 <Col md={4} sm={24} key={index}>
