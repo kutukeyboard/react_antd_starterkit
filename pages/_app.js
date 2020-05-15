@@ -25,7 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
           },
           {
             caption: "Blog Page",
-            url: "",
+            url: "/blogList",
           },
         ],
       },

@@ -29,11 +29,12 @@
 }
 
 .product-card-layout {
-  margin-left: 40px !important;
+  margin-left: 20px !important;
   margin-right: 20px !important;
   display: flex;
-  flex-wrap: wrap;
-  /* flex: 1 1 0px; */
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  flex: 10;
 }
 .product-card {
   height: 100%;
